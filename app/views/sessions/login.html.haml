@@ -1,0 +1,14 @@
+%section.login
+  .row
+    .col-sm-10.col-sm-offset-1
+      = bootstrap_form_tag url: sessions_path do |f|
+        %header
+          %h1 Login
+        %fieldset
+          = f.email_field :email, label: "Email Address"
+          = f.password_field :password
+        %fieldset.form-group.action
+          %input(type="submit" value="Login" class="btn btn-default")
+          = link_to  "Forgot Password?", forgot_password_path, class: 'btn btn-default'
+
+

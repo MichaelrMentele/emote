@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   get 'ui(/:action)', controller: 'ui' unless Rails.env.production?
 
-  resources :users, only: [:new, :create, :edit]
+  get 'login', to: 'sessions#new'
+  post 'logout', to: 'sessions#destroy'
+
+  get 'register', to: 'users#new'
+  resources :users, only: [:create, :edit]
 end
