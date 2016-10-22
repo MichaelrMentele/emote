@@ -1,0 +1,3 @@
+class DispensersController < ApplicationController
+
+end

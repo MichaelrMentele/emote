@@ -1,0 +1,14 @@
+// if current user
+// show logout link
+// account link
+// else
+
+.top-right-fixed-menu
+  - if current_user
+    = link_to "Logout"
+    | 
+    = link_to "Account"
+  - else
+    = link_to "Login"
+    | 
+    = link_to "Sign Up"
