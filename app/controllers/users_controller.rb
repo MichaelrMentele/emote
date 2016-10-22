@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def home
-    
+
   end
 
   def new
@@ -10,7 +10,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    render :edit
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "We updated your info #{@user.username}."
+      redirect_to edit_user_path
+    else
+      flash[:danger] = "I'm sorry! There was a problemo holmes!"
+      render :edit
+    end
   end
 
   def create
