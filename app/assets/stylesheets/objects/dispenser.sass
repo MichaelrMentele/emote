@@ -1,0 +1,34 @@
+$dispenser-color: lightblue
+$dispenser-width: 240px
+$dispenser-height: ($dispenser-width / 4) * 3
+
+.dispenser-pool
+  border-left: 1px solid red
+  height: 100%
+
+  .dispenser-pool-header
+
+  .dispenser-pool-collection
+    box-sizing: border-box
+
+    .dispenser-container
+      vertical-align: top
+      display: inline-block
+      padding: 0
+      margin: 0 0 1em 0
+      width: $dispenser-width
+      height: $dispenser-height
+
+      .add-dispenser
+        display: block
+        line-height: $dispenser-height
+
+      .dispenser
+        display: block
+        outline: 1px solid lightgrey
+        background: $dispenser-color
+        .dispenser-head
+          h4
+            margin: 0
+        .dispenser-body
+

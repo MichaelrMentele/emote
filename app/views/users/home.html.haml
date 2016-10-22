@@ -1,0 +1,88 @@
+= javascript_include_tag 'popover_activate' 
+
+%section.home.clearfix.well
+  .message-pool.col-xs-6
+    .message-pool-header
+      %h2.text-center
+        Messages
+    .message-pool-create
+      -# = bootstrap_form_for [@user, @message] do |f|
+      -#     %header.row
+      -#       %h2(style="margin-left: 15px;") Write a message...
+      -#     .row
+      -#       %fieldset.col-sm-8
+      -#         .row
+      -#           .col-sm-6
+      -#             = f.select :emoji, emojis_options_for_message
+      -#         = f.text_field :title, label: "Review Title"
+      -#         = f.text_area :description
+      -#       %fieldset.actions.control-group.col-sm-8
+      -#         .controls.form-group
+      -#           %input(type="submit" value="Submit" class="btn btn-default")
+      %form
+        %header.row
+          %h3
+            Add Messages...
+        .row
+          %fieldset.col-xs-8
+            .row
+              %select
+            .row
+              = text_area_tag ""
+    .message-pool-collection
+      %a(href="#" tabindex="0" data-trigger="focus" data-toggle="popover" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?")
+        %img.message(src="/assets/cap-fun.png" )
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+      %img.message(src="/assets/cap-fun.png")
+  .dispenser-pool.col-xs-6
+    .dispenser-pool-header.row
+      %h2.text-center
+        Dispensers
+    .dispenser-pool-collection.text-center.row
+      .dispenser-container
+        .add-dispenser
+          %i(class="glyphicon gi-3x glyphicon-plus")
+      .dispenser-container
+        .dispenser
+          .dispenser-head
+            %h4.text-center
+              Encouragement for Sean
+          .dispenser-body
+            %dl
+              %dt
+                Type
+              %dd
+                Random Sprinkles of Affection
+              %dt
+                Message Count
+              %dd
+                9 Messages Remaining
+              %dt
+                Next Message
+              %dd
+                Sending sometime today.
+      .dispenser-container
+        .dispenser
+          .dispenser-head
+            %h4.text-center
+              Encouragement for Sean
+          .dispenser-body
+            %dl
+              %dt
+                Type
+              %dd
+                Random Sprinkles of Affection
+              %dt
+                Message Count
+              %dd
+                9 Messages Remaining
+              %dt
+                Next Message
+              %dd
+                Sending sometime today.
+
