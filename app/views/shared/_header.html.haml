@@ -4,23 +4,23 @@
       .site-title
         %h1.text-center
           EMOTE!
-      .emojis.col-xs-8.col-xs-offset-2
-        .emoji.col-xs-3
-          %h3.emoji-title.text-center
-            Joy
-          .emoji-image.joy
-        .emoji.col-xs-3
-          %h3.emoji-title.text-center
-            Love
-          .emoji-image.love
-        .emoji.col-xs-3
-          %h3.emoji-title.text-center
-            Fun
-          .emoji-image.fun
-        .emoji.col-xs-3
-          %h3.emoji-title.text-center
-            Hope
-          .emoji-image.hope
+      - unless request.path != '/'
+        .emojis.col-xs-8.col-xs-offset-2
+          .emoji.col-xs-3
+            %h3.emoji-title.text-center
+              Joy
+            %img.emoji-image(src="/assets/emot-joy.png")
+          .emoji.col-xs-3
+            %h3.emoji-title.text-center
+              Love
+            %img.emoji-image(src="/assets/emot-love.png")
+          .emoji.col-xs-3
+            %h3.emoji-title.text-center
+              Fun
+            %img.emoji-image(src="/assets/emot-fun.png")
+          .emoji.col-xs-3
+            %h3.emoji-title.text-center
+              Hope
+            %img.emoji-image(src="/assets/emot-hope.png")
+          
         
-        
-
