@@ -58,6 +58,40 @@ describe UsersController, type: :controller do
   end
 
   describe "POST create" do 
-    
+    context "valid inputs" do 
+      before do 
+        post :create, user: { email: 'new@test', password: 'new', username: 'bye' }
+      end
+
+      it "creates the user" do 
+        expect(User.all.count).to eq(1)
+      end
+
+      it "sets a flash success message" do 
+        expect(flash[:success]).to be_present
+      end
+
+      it "redirects to the login page" do 
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context "invalid inputs" do
+      before do 
+        post :create, { user: { email: '', password: 'new', username: 'bye'} }
+      end
+
+      it "does not create the user" do 
+        expect(User.all.count).to eq(0)
+      end
+
+      it "sets a flash danger message" do 
+        expect(flash[:danger]).to be_present
+      end
+
+      it "renders the :new view" do 
+        expect(response).to render_template :new
+      end
+    end
   end
 end

@@ -27,8 +27,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome, #{@user.username}!"
+      redirect_to login_path
     else
       flash[:danger] = "I'm sorry please review your information."
+      render :new
     end
   end
 
