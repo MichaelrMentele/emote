@@ -15,26 +15,23 @@
           Story Sequence
     .row
       .dispenser-create.col-xs-offset-2.col-xs-8.hide(id="sprinkles-form")
-        = bootstrap_form_for [current_user, @sprinkles_dispenser] do |f|
+        = bootstrap_form_for [current_user, @dispenser] do |f|
           .row
             %fieldset.col-xs-8
               .row
-                .col-xs-6
-                  = f.select :significant, options_for_significants(current_user.significants), label: "Recipient"
-                .col-xs-6
-              = f.text_field :purpose_statement, label: "Label for this Dispenser", placeholder: "To encourage Sally..." 
-            %fieldset.actions.control-group.col-xs-8
-              .controls.form-group
-                %input(type="submit" value="Submit" class="btn btn-default")
-      .dispenser-create.col-xs-offset-2.col-xs-8.hide(id="story-form")
-        = bootstrap_form_for [current_user, @story_dispenser] do |f|
-          .row
-            %fieldset.col-xs-8
+                .col-xs-12
+                  = f.text_field :purpose_statement, label: "Label for this Dispenser", placeholder: "To encourage Sally..."
               .row
                 .col-xs-6
-                  = f.select :significant, options_for_significants(current_user.significants), label: "Recipient"
+                  = f.select :significant_id, options_for_significants(current_user.significants), label: "Recipient"
                 .col-xs-6
-              = f.text_field :purpose_statement, label: "Label for this Dispenser", placeholder: "To encourage Sally..." 
+              .row
+                .col-xs-6
+                  = label_tag :frequency, nil, class: "control-label"
+                  = select_tag :frequency, options_for_message_frequency, class: "form-control"
+                .col-xs-6
+                  = label_tag :period, nil, class: "control-label"
+                  = select_tag :period, options_for_message_period, class: "form-control"
             %fieldset.actions.control-group.col-xs-8
               .controls.form-group
                 %input(type="submit" value="Submit" class="btn btn-default")
