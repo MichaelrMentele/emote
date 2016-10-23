@@ -1,3 +1,5 @@
+
+
 describe SessionsController, type: :controller do 
   describe "GET new" do 
     it "redirects to home if current user" do 

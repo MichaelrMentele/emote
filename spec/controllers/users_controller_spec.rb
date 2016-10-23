@@ -14,6 +14,31 @@ describe UsersController, type: :controller do
     end
   end
 
+  describe "GET home" do 
+    let(:alice) { Fabricate(:user) }
+    it "sets @message" do
+      set_current_user(user: alice)
+      get :home
+      expect(assigns(:message)).to be_instance_of(Message)
+    end
+
+    it "sets @messages" do 
+      set_current_user(user: alice)
+      Fabricate(:message, user: alice)
+      Fabricate(:message, user: alice)
+      get :home
+      expect(assigns(:messages).size).to eq(Message.all.count)
+    end
+
+    it "sets @dispensers" do 
+      set_current_user(user: alice)
+      Fabricate(:dispenser, user: alice)
+      Fabricate(:dispenser, user: alice)
+      get :home
+      expect(assigns(:dispensers).count).to eq(Dispenser.all.count)
+    end
+  end
+
   describe "PATCH update" do 
     context "valid inputs" do 
       let(:alice) { Fabricate(:user, email: 'old@test', password: 'old', username: 'hello') }

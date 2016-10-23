@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022161738) do
+ActiveRecord::Schema.define(version: 20161022232448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dispensers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "significant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "dispenser_id"
+    t.text     "message"
+    t.string   "emoji"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "sent"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

@@ -1,5 +1,4 @@
-# user-id
-# significant_id
-# type random
-
-# polymorphic association on capsules to different dispenser types.
+class Dispenser < ActiveRecord::Base
+  belongs_to :user
+  has_many :messages
+end

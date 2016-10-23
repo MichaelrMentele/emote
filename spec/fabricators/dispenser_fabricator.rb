@@ -1,0 +1,3 @@
+Fabricator(:dispenser) do 
+
+end

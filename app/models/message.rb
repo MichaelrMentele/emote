@@ -1,6 +1,12 @@
-# user_id
-# dispenser_id
-# message
-# emoji
-# recycled (bool set to true when dispenser send message and false when added to dispenser)
-# timestamps
+class Message < ActiveRecord::Base
+  validates_presence_of :message
+
+  belongs_to :user
+  belongs_to :dispenser
+
+  after_initialize :set_default_values
+  
+  def set_default_values
+    sent ||= false
+  end
+end

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def home
-
+    @message = Message.new
+    @messages = current_user.messages
+    @dispensers = current_user.dispensers
   end
 
   def new
