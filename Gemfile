@@ -47,6 +47,7 @@ group :development do
 end
 
 group :production do 
+  gem 'rails_12factor'
   gem 'pg'    # Postgres
   gem 'puma'  # concurrent server
   gem 'sentry-raven' # error aggregator
