@@ -15,7 +15,10 @@
         %fieldset.actions.control-group.col-sm-8
           .controls.form-group
             %input(type="submit" value="Submit" class="btn btn-default")
-  .message-pool-collection
+  .message-pool-collection(ondrop="drop_handler(event);" ondragover="dragover_handler(event);")
     - current_user.messages.each do |message|
-      %a(href="#" tabindex="0" data-trigger="focus" data-toggle="popover" title="Your Positive Message..." data-content="#{message}")
-        %img.message(src="/assets/cap-#{message.emoji}.png" )
+      - unless message.dispenser
+        = render partial: 'messages/message', locals: { message: message }
+
+= javascript_include_tag 'draggable'
+= javascript_include_tag 'popover_activate' 

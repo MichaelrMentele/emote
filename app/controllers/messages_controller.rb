@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params.merge!(user: current_user))
     if @message.save
       flash[:success] = "#{@message.emotion} message added."
-      redirect_to home_path
+      redirect_to :back
     else  
       flash[:danger] = "Uh-oh, please check your entered information."
       render 'users/home'

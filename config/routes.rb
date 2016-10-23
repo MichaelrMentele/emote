@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :edit, :update] do 
     resources :messages, only: [:create]
     resources :dispensers, only: [:new, :create, :edit, :update]
-    resources :sprinkles_messengers, only: [:show]
+    resources :sprinkles_messengers, only: [:show, :update]
   end
 end
+

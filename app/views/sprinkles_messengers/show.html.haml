@@ -1,13 +1,11 @@
-= javascript_include_tag 'popover_activate' 
-
 %section.home.clearfix.well
   = render partial: 'messages/module', locals: { message: @message }
   .messenger-populate.col-xs-6
     .messenger-populate-header.row
       %h2.text-center
         = @messenger.dispenser.purpose_statement
-    .messenger-messages
+    .messenger-messages(id="messenger-#{@messenger.id}" ondrop="drop_handler(event);" ondragover="dragover_handler(event);")
       - @messenger.dispenser.messages.each do |message|
-        %a(href="#" tabindex="0" data-trigger="focus" data-toggle="popover" title="Your Positive Message..." data-content="#{message}")
-          %img.message(src="/assets/cap-#{message.emoji}.png" )
+        = render partial: 'messages/message', locals: { message: message }
 
+= javascript_include_tag 'droppable'
