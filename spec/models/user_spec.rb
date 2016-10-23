@@ -5,4 +5,5 @@ describe User do
   it { should validate_uniqueness_of(:email) }
   it { is_expected.to have_many(:messages) }
   it { is_expected.to have_many(:dispensers)}
+  it { is_expected.to have_many(:significants)}
 end

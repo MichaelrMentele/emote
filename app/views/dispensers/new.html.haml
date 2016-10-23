@@ -1,0 +1,22 @@
+= javascript_include_tag 'popover_activate' 
+
+%section.home.clearfix.well
+  = render partial: 'messages/module', locals: { message: @message }
+  .dispenser-pool.col-xs-6
+    .dispenser-pool-header.row
+      %h2.text-center
+        Create Dispenser
+        - # Unless this is edit!
+    .dispenser-create
+      = bootstrap_form_for [current_user, @dispenser] do |f|
+        .row
+          %fieldset.col-sm-8
+            .row
+              .col-sm-6
+                = f.select :type, options_for_dispensers
+                = f.select :significant, options_for_significants
+            = f.text_field :purpose_statement, label: "What is this for?"
+          %fieldset.actions.control-group.col-sm-8
+            .controls.form-group
+              %input(type="submit" value="Submit" class="btn btn-default")
+    .dispenser-messages

@@ -1,27 +1,7 @@
 = javascript_include_tag 'popover_activate' 
 
 %section.home.clearfix.well
-  .message-pool.col-xs-6
-    .message-pool-header
-      %h2.text-center
-        Messages
-    .message-pool-create
-      = bootstrap_form_for [current_user, @message] do |f|
-        %header.row
-          %h2(style="margin-left: 15px;") Write a message...
-        .row
-          %fieldset.col-sm-8
-            .row
-              .col-sm-6
-                = f.select :emoji, options_for_emojis
-            = f.text_area :message
-          %fieldset.actions.control-group.col-sm-8
-            .controls.form-group
-              %input(type="submit" value="Submit" class="btn btn-default")
-    .message-pool-collection
-      - current_user.messages.each do |message|
-        %a(href="#" tabindex="0" data-trigger="focus" data-toggle="popover" title="Your Positive Message..." data-content="#{message}")
-          %img.message(src="/assets/cap-#{message.emoji}.png" )
+  = render partial: 'messages/module', locals: { message: @message }
   .dispenser-pool.col-xs-6
     .dispenser-pool-header.row
       %h2.text-center
@@ -29,44 +9,27 @@
     .dispenser-pool-collection.text-center.row
       .dispenser-container
         .add-dispenser
-          = link_to "", new_user_dispensers_path
+          = link_to new_user_dispenser_path(current_user) do 
             %i(class="glyphicon gi-3x glyphicon-plus")
-      .dispenser-container
-        .dispenser
-          .dispenser-head
-            %h4.text-center
-              Encouragement for Sean
-          .dispenser-body
-            %dl
-              %dt
-                Type
-              %dd
-                Random Sprinkles of Affection
-              %dt
-                Message Count
-              %dd
-                9 Messages Remaining
-              %dt
-                Next Message
-              %dd
-                Sending sometime today.
-      .dispenser-container
-        .dispenser
-          .dispenser-head
-            %h4.text-center
-              Encouragement for Sean
-          .dispenser-body
-            %dl
-              %dt
-                Type
-              %dd
-                Random Sprinkles of Affection
-              %dt
-                Message Count
-              %dd
-                9 Messages Remaining
-              %dt
-                Next Message
-              %dd
-                Sending sometime today.
+      - current_user.dispensers.each do |dispenser|
+        .dispenser-container
+          .dispenser
+            .dispenser-head
+              %h4.text-center
+                = dispenser.purpose_statement
+            .dispenser-body
+              %dl
+                %dt
+                  Type
+                %dd
+                  Random Sprinkles of Affection
+                %dt
+                  Messages Left
+                %dd
+                  = DispenserDecorator.new(dispenser).remaining_messages
+                %dt
+                  Upcoming Message
+                %dd
+                  IMPLEMENT: Sending sometime today.
+      
 

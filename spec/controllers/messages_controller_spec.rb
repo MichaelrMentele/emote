@@ -3,7 +3,7 @@ describe MessagesController do
     context "valid input" do
       before do 
         set_current_user
-        post :create, user_id: current_user.id, message: { emoji: 'joy', message: '' }
+        post :create, user_id: current_user.id, message: { emoji: 'joy', message: 'Hello!' }
       end
 
       it "creates a message" do 
