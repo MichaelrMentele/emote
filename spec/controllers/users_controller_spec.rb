@@ -21,22 +21,6 @@ describe UsersController, type: :controller do
       get :home
       expect(assigns(:message)).to be_instance_of(Message)
     end
-
-    it "sets @messages" do 
-      set_current_user(user: alice)
-      Fabricate(:message, user: alice)
-      Fabricate(:message, user: alice)
-      get :home
-      expect(assigns(:messages).size).to eq(Message.all.count)
-    end
-
-    it "sets @dispensers" do 
-      set_current_user(user: alice)
-      Fabricate(:dispenser, user: alice)
-      Fabricate(:dispenser, user: alice)
-      get :home
-      expect(assigns(:dispensers).count).to eq(Dispenser.all.count)
-    end
   end
 
   describe "PATCH update" do 

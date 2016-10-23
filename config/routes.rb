@@ -9,5 +9,8 @@ Rails.application.routes.draw do
 
   get 'home', to: 'users#home'
   get 'register', to: 'users#new'
-  resources :users, only: [:create, :edit, :update]
+  resources :users, only: [:create, :edit, :update] do 
+    resources :messages, only: [:create]
+    resources :dispensers, only: [:new, :create, :edit, :update]
+  end
 end
