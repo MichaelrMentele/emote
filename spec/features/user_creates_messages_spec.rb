@@ -13,11 +13,11 @@ feature "on the home page the user", js: true do
     sleep 1
 
     select('joy', :from => 'Emoji')
-    fill_in "Message", with: "I love emoting!"
+    fill_in "Message", with: "You make me joyful!"
     click_button "Submit"
     sleep 1
 
-    expect(page).to have_css("img[src='/assets/cap-fun.png']")
-    expect(page).to have_css("img[src='/assets/cap-joy.png']")
+    expect(page).to have_css("a[data-content='I love emoting!']")
+    expect(page).to have_css("a[data-content='You make me joyful!']")
   end
 end
