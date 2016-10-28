@@ -1,0 +1,24 @@
+deployment:
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app emote-sms
+      - heroku pg:backups capture --app emote-sms
+      - git push git@heroku.com:emote-sms.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app emote-sms
+      - heroku maintenance:off --app emote-sms
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app staging-emote-sms
+      - git push git@heroku.com:staging-emote-sms.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app staging-emote-sms
+      - heroku maintenance:off --app staging-emote-sms
+
+test:
+  pre:
+    - wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.10.0/geckodriver-v0.10.0-linux64.tar.gz
+    - gunzip -c geckodriver.tar.gz | tar xopf -
+    - chmod +x geckodriver
+    - sudo mv geckodriver /home/ubuntu/bin
+
