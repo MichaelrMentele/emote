@@ -7,7 +7,7 @@ describe DispensersController do
     it "sets @dispenser" do 
       alice = Fabricate(:user)
       set_current_user(user: alice)
-      
+
       get :new, user_id: alice.id
       expect(assigns(:dispenser)).to be_instance_of(Dispenser)
     end
@@ -41,6 +41,10 @@ describe DispensersController do
       it "creates a dispenser" do 
         expect(Dispenser.all.count).to eq(1)
       end
+
+      it "associates the dispenser to a significant" do 
+        expect(Significant.first.dispensers.count).to eq(1)
+      end
     end
 
     context "invalid inputs" do 
@@ -65,6 +69,10 @@ describe DispensersController do
 
       it "does not create a dispenser" do 
         expect(Dispenser.all.count).to eq(0)
+      end
+
+      it "does not associate a significant" do 
+        expect(Dispenser.first).to be_nil
       end
     end
   end
