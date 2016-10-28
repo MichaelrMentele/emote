@@ -1,4 +1,6 @@
 class DispensersController < ApplicationController
+  before_filter :require_user
+
   def new
     @dispenser = Dispenser.new
   end

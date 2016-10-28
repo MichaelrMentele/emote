@@ -1,13 +1,23 @@
 describe DispensersController do 
   describe "GET new" do 
+    it_behaves_like "require signed in" do 
+      let(:action) { get :new, user_id: 1 }
+    end
+
     it "sets @dispenser" do 
       alice = Fabricate(:user)
+      set_current_user(user: alice)
+      
       get :new, user_id: alice.id
       expect(assigns(:dispenser)).to be_instance_of(Dispenser)
     end
   end
 
   describe "POST create" do 
+    it_behaves_like "require signed in" do 
+      let(:action) { get :new, user_id: 1 }
+    end
+
     context "valid inputs" do 
       let(:alice) { Fabricate(:user) }
       let(:bob) { Fabricate(:significant, user: alice) }

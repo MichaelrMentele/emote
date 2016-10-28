@@ -4,5 +4,7 @@
       .site-title
         %h1.text-center
           EMOTE!
+      - if current_user
+        = link_to "Dashboard", home_path, class: "center"
       
         

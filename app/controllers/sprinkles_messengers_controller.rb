@@ -8,7 +8,6 @@ class SprinklesMessengersController < ApplicationController
   def update
     messenger = SprinklesMessenger.find(params[:id])
 
-    binding.pry
     # get ids
     messages_id = params[:messages_id].map do |message_id|
       message_id.split('-').pop

@@ -17,7 +17,6 @@ feature "on the home page the user", js: true do
     click_button "Submit"
     sleep 1
 
-    binding.pry
     expect(page).to have_css("img[src='/assets/cap-fun.png']")
     expect(page).to have_css("img[src='/assets/cap-joy.png']")
   end

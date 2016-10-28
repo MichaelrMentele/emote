@@ -8,7 +8,10 @@ class ApplicationController < ActionController::Base
   private 
   
   def require_user
-    redirect_to login_path unless current_user
+    unless current_user
+      flash[:warning] = "You need to be signed in to do that."
+      redirect_to login_path  
+    end
   end
 
   def current_user
