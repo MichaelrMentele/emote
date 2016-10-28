@@ -11,18 +11,17 @@
           %li Story Time - Send a sequence of messages at predetermined times
           %li Delayed Messages - Schedule one off reminders and messages (birthday texts)
     .col-xs-6
-      = bootstrap_form_for @user do |f|
+      %form
         %header 
           %h2
             Register
         %fieldset
           .form-group
-            = f.text_field :username
-            = f.phone_field :phone, label: "Phone Number"
+            %label(for="email") Email
+            %input.form-control(type="email" name="email")
           .form-group
-            = f.email_field :email, label: "Email Address"
-          .form-group
-            = f.password_field :password
+            %label(for="password") Password
+            %input.form-control(type="password" name="password")
           %hr
         %fieldset.credit_card
           %span.payment-errors
@@ -39,4 +38,4 @@
                 = select_month(Date.today, {add_month_numbers: true},  class: 'form-control', data:{stripe: "exp-month"})
               .col-xs-6
                 = select_year(Date.today.year, {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control', data: {stripe: "exp-year"})
-        %input(type="submit" value="Sign Up" class="btn btn-default")
+        %input(type="submit" value="Submit" class="btn btn-default")
