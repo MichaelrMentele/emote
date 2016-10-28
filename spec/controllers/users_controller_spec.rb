@@ -1,4 +1,5 @@
 describe UsersController, type: :controller do 
+
   describe "GET new" do 
     it "sets @user" do 
       get :new
@@ -7,14 +8,24 @@ describe UsersController, type: :controller do
   end
 
   describe "GET edit" do 
+    it_behaves_like "require signed in" do 
+      let(:action) { get :edit, id: 1}
+    end
+
     it "retrieves @user" do
       alice = Fabricate(:user)
+      set_current_user(user: alice)
+
       get :edit, id: alice.id
       expect(assigns(:user)).to eq(alice)
     end
   end
 
   describe "GET home" do 
+    it_behaves_like "require signed in" do 
+      let(:action) { get :edit, id: 1 }
+    end
+
     let(:alice) { Fabricate(:user) }
     it "sets @message" do
       set_current_user(user: alice)
@@ -23,10 +34,15 @@ describe UsersController, type: :controller do
     end
   end
 
-  describe "PATCH update" do 
+  describe "PATCH update" do
+    it_behaves_like "require signed in" do 
+      let(:action) { get :edit, id: 1 }
+    end
+
     context "valid inputs" do 
       let(:alice) { Fabricate(:user, email: 'old@test', password: 'old', username: 'hello') }
       before do 
+        set_current_user(user: alice)
         put :update, { id: alice.id, user: { email: 'new@test', password: 'new', username: 'bye'} }
       end
       it "updates the user" do 
@@ -45,6 +61,7 @@ describe UsersController, type: :controller do
     context "invalid inputs" do
       let(:alice) { Fabricate(:user, email: 'old@test', password: 'old', username: 'hello') } 
       before do 
+        set_current_user(user: alice)
         put :update, { id: alice.id, user: { email: '', password: 'new', username: 'bye'} }
       end
 
@@ -69,7 +86,7 @@ describe UsersController, type: :controller do
   describe "POST create" do 
     context "valid inputs" do 
       before do 
-        post :create, user: { email: 'new@test', password: 'new', username: 'bye' }
+        post :create, user: { email: 'new@test', phone: '5555555555', password: 'new', username: 'bye' }
       end
 
       it "creates the user" do 

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_user, except: [:new, :create]
+
   def home
     @message = Message.new
   end
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to login_path
     else
-      flash[:danger] = "I'm sorry please review your information."
+      flash[:danger] = "Invalid user information. Please check the errors below."
       render :new
     end
   end
@@ -36,6 +38,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :phone, :email, :password)
   end
 end
