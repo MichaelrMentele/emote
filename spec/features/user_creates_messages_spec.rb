@@ -1,11 +1,7 @@
 feature "on the home page the user", js: true do 
   scenario "creates two messages" do 
     alice = Fabricate(:user)
-    visit login_path
-    fill_in "Email Address", with: alice.email
-    fill_in "Password", with: alice.password
-    click_button "Login"
-    sleep 1
+    login(alice)
 
     select('fun', :from => 'Emoji')
     fill_in "Message", with: "I love emoting!"

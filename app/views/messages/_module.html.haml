@@ -1,11 +1,11 @@
-.message-pool.col-xs-6
+.message-pool.col-xs-12.col-sm-6.col-lg-4
   .message-pool-header
     %h2.text-center
       Messages
   .message-pool-create
     = bootstrap_form_for [current_user, message] do |f|
       %header.row
-        %h2(style="margin-left: 15px;") Write a message...
+        %h2(style="margin-left: 15px;")
       .row
         %fieldset.col-sm-8
           .row

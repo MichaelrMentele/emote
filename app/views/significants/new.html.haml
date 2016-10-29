@@ -1,0 +1,14 @@
+%section.home.clearfix.well
+  .recipient-pool
+    .row
+      .recipient-create.col-xs-offset-2.col-xs-8
+        = bootstrap_form_for [current_user, @significant] do |f|
+          .row
+            %fieldset.col-xs-8
+              .row
+                .col-xs-12
+                  = f.text_field :name, label: "Recipient Name", placeholder: "Freya Hildegard"
+                  = f.phone_field :phone, label: "Phone Number"
+            %fieldset.actions.control-group.col-xs-8
+              .controls.form-group
+                %input(type="submit" value="Create" class="btn btn-default")

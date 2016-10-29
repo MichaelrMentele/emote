@@ -1,6 +1,6 @@
 %section.home.clearfix.well
   = render partial: 'messages/module', locals: { message: @message }
-  .dispenser-pool.col-xs-12.col-sm-6.col-lg-4
+  .dispenser-pool.col-xs-6
     .dispenser-pool-header.row
       %h2.text-center
         Dispensers
@@ -29,21 +29,22 @@
                   Upcoming Message
                 %dd
                   IMPLEMENT: Sending sometime today.
-  .recipient-pool.col-xs-12.col-sm-6.col-lg-4
+  .recipient-pool.col-xs-6
     .recipient-pool-header.row
       %h2.text-center
         Recipients
     .recipient-pool-collection.text-center.row
       .recipient-container
         .add-recipient
-          = link_to new_user_significant_path(current_user) do
+          = link_to new_user_recipient_path(current_user) do
             %i(class="glyphicon gi-3x glyphicon-plus")
-      - current_user.significants.each do |significant|
+      - current_user.recipients.each do |recipient|
         .recipient-container
           .recipient
             .recipient-head
               %h4.text-center
-                = significant.name
+                = recipient.name
             .recipient-body
-          
+            
+      
 

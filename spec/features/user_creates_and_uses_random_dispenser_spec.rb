@@ -4,7 +4,8 @@ feature "user can create a random messages dispenser" do
     recipient = Fabricate(:significant, user: alice)
     m1 = Fabricate(:message, user: alice)
     m2 = Fabricate(:message, user: alice)
-    set_current_user(user: alice)
+    
+    login(alice)
 
     click_link "Create Dispenser" 
     expect(page).to have_content "Select Your Dispenser"
