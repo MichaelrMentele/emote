@@ -23,6 +23,8 @@ class Dispenser < ActiveRecord::Base
     if has_messages? and overdue?
       message = select_random_message
       if deliver_sms(message)
+        puts "Message sent to #{significant.phone}"
+        message.update(sent: true)
         set_delivery_time!
       end
     end
@@ -55,23 +57,21 @@ class Dispenser < ActiveRecord::Base
     begin
       client.messages.create(
         to: significant.phone,
-        from: "14255288374",
+        from: ENV['TWILIO_PHONE'],
         body: message
       )
+      true
     rescue Twilio::REST::RequestError => e
       puts e.message
+      false
     end
-
-    puts "Message sent to #{significant.phone}"
-    message.update(sent: true)
   end
 
   def next_delivery_time
     offset_hour = 7 # don't send before offset
     messaging_hours = 12 # send between offset and end of range
 
-    DateTime.now.change({ 
-      day: DateTime.now.tomorrow.day, 
+    DateTime.now.tomorrow.change({ 
       hour: offset_hour + rand(messaging_hours),
       minute: rand(60)
     })

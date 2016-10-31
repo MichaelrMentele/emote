@@ -29,10 +29,8 @@ describe Dispenser do
       end
 
       context "and is overdue" do 
-        # TODO: Stub out the deliver sms method
-
         it "sets sent on the delivered message to true" do 
-          dispenser.start!
+          dispenser.delivery_time = DateTime.now.yesterday
           dispenser.send_next
 
           expect(dispenser.reload.messages.first.sent).to eq(true)
@@ -40,7 +38,7 @@ describe Dispenser do
 
         it "sends a message that hasn't been sent before" do 
           dispenser.messages.push(Fabricate(:message, sent: true))
-          dispenser.start!
+          dispenser.delivery_time = DateTime.now.yesterday
           dispenser.send_next
 
           expect(dispenser.reload.messages.where(sent: true).count).to eq(2)
@@ -48,9 +46,9 @@ describe Dispenser do
 
         it "sets delivery_time to a DateTime in the future" do 
           dispenser.start!
-
           dispenser.send_next
-          expect(dispenser.reload.delivery_time).to be > DateTime.now
+
+          expect(dispenser.reload.delivery_time).to be > DateTime.now.in_time_zone
         end
       end
 
