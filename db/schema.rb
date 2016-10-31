@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028013532) do
+ActiveRecord::Schema.define(version: 20161031013548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20161028013532) do
     t.string   "dispensable_type"
     t.integer  "dispensable_id"
     t.integer  "significant_id"
+    t.datetime "delivery_time"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161028013532) do
     t.string   "emoji"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "sent"
+    t.boolean  "sent",         default: false
   end
 
   create_table "significants", force: :cascade do |t|

@@ -15,9 +15,11 @@ gem 'haml-rails' # Compile haml
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password for password hashing
+gem 'clockwork' # background process scheduling
 gem 'sidekiq' # background processes
 gem 'stripe' # payment processing
 gem 'figaro' # sensitive info management
+gem 'twilio-ruby' # sms
 
 group :development, :test do
   gem 'pry'     # debugger
@@ -25,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
   gem 'faker'
+  gem 'foreman'
 end
 
 group :test do 
