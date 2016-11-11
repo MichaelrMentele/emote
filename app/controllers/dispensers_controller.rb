@@ -1,6 +1,14 @@
 class DispensersController < ApplicationController
   before_filter :require_user
 
+  def update
+    redirect_to :back
+  end
+
+  def show
+
+  end
+
   def new
     @dispenser = Dispenser.new
   end
